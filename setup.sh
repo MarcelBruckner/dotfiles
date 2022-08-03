@@ -8,15 +8,11 @@ sudo systemctl enable NetworkManager
 sudo pacman -Syyu
 sudo pacman -S --needed git base-devel
 sudo pacman -Syu neovim xorg-server xorg-apps plasma-meta \
-    alacritty chromium neofetch htop zsh \
-    xmonad xmonad-contrib \
-    dolphin ark konsole \
-    dmenu networkmanager-openvpn \
-    reflector \
+    alacritty chromium neofetch htop zsh openssl \
+    ripgrep reflector dolphin ark konsole firefox networkmanager-openvpn \
+    xmonad xmonad-contrib dmenu \
     bluez bluez-utils pulseaudio-bluetooth \
-    firefox \
     jdk8-openjdk jdk11-openjdk jdk17-openjdk \
-    ripgrep \
     ranger ttf-nerd-fonts-symbols
 
 git clone https://github.com/NvChad/NvChad $HOME/.config/nvim --depth 1 && nvim
@@ -27,6 +23,7 @@ sudo systemctl enable --now reflector.timer
 sudo systemctl enable --now bluetooth
 
 # Setup git
+ssh-keygen -t ed25519 -C "bruckner@cqse.eu"
 git config --global user.name "bruckner"
 git config --global user.email "bruckner@cqse.eu"
 
