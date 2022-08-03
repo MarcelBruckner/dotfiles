@@ -1,0 +1,40 @@
+# Work aliases
+alias cqse-vpn='vpn.sh'
+
+# Repository 
+alias cqse-clone-teamscale='git clone git@git.cqse.eu:cqse/teamscale.git'
+alias cqse-bootstrap='cd $HOME/teamscale && ./gradlew clean bootstrap'
+alias cqse-bootstrap-eclipse-plugin='cd $HOME/teamscale && ./gradlew clean generateSources bootstrapThirdParty'
+
+# Git 
+alias cqse-add-relevant='cd $HOME/teamscale && git add "*.ts" && git add "*.js" && git add "*.soy" && git add "*.java" && git add "*.tsx" && git add "*.less"'
+alias cqse-commit='cqse-add-relevant && git commit -v && echo '' && git status'
+alias cqse-amend='cqse-add-relevant && git commit --amend && echo '' && git status'
+alias cqse-stash='cd $HOME/teamscale && git add . && git stash && echo '' && git status'
+alias cqse-master='cqse-stash && git checkout master && git pull && cqse-bootstrap'
+
+cqse-new-branch() {
+  parent="teamscale/v$1"
+  if [[ "$1" == "master" ]]; then
+    parent="master"
+  fi  
+  echo "Parent: $parent"
+
+  params="${@:2}"
+  name=cr/"$(all-lowercase-replace-whitespace.sh $params)"
+  echo "Branch: $name"
+
+  cd $HOME/teamscale
+  cqse-stash
+  git checkout $parent
+  git checkout -B $name
+  git checkout $name
+  cqse-bootstrap
+
+  git_output=$((echo $(git push)) 2>&1)
+  git_command=$(echo $git_output | grep "git push")
+  eval $git_command
+}
+
+# Audit
+alias cqse-ssh-audit-env='ssh www-data@ts-run.cqse.eu'

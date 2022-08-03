@@ -1,0 +1,10 @@
+alias apttodate="sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y"
+alias unzip="bsdtar xvf"
+
+alias ls="ls -la --color -h --group-directories-first"
+alias gps="git pull && git push"
+alias gpl="git pull"
+alias gs="git status"
+
+alias 1password="eval \$(op signin cqse_gmbh)"
+alias google="google-chrome-stable"
