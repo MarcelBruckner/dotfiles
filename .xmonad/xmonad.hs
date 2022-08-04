@@ -24,8 +24,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     , ((modm .|. shiftMask      , xK_k      ), spawn "chromium https://calendar.google.com/calendar/u/0/r")
     --, ((modm                    , xK_t      ), spawn "chromium https://cqse.atlassian.net/jira/software/projects/BRUCKNER/boards/128")
-    , ((modm                    , xK_t      ), spawn "alacritty -t timew -e timew_startup")
-    , ((modm .|. shiftMask      , xK_t      ), spawn "timew stop")
+    , ((modm                    , xK_z      ), spawn "alacritty -t timew -e timew_startup")
+    , ((modm .|. shiftMask      , xK_z      ), spawn "timew stop")
+    , ((modm                    , xK_t      ), spawn "alacritty -t task_add -e task_add")
+    , ((modm .|. shiftMask      , xK_t      ), spawn "alacritty -t task_done -e task_done")
 
     , ((modm .|. controlMask    , xK_Return ), spawn "chromium" )
     , ((modm                    , xK_s      ), spawn "slack")
@@ -38,8 +40,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myManageHook = composeAll . concat $
     [
-      [ title       =? "timew"          --> doRectFloat (W.RationalRect 0.4 0.4 0.2 0.02) ]
-    , [ title       =? "SpeedCrunch"    --> doRectFloat (W.RationalRect 0.4 0.4 0.2 0.2) ]
+      [ title       =? c                --> doRectFloat (W.RationalRect 0.4 0.4 0.2 0.02)   | c <- oneLineApps]
+    , [ title       =? c                --> doRectFloat (W.RationalRect 0.4 0.4 0.2 0.2)    | c <- middleFloatApps]
 
     , [ className   =? c --> doFloat            | c <- floatsByClassName]
     , [ title       =? t --> doFloat            | t <- floatsByTitle]
@@ -50,6 +52,8 @@ myManageHook = composeAll . concat $
         floatsByTitle       = ["alsamixer", "timew"]
         webApps             = [""] -- open on desktop 2 <-- Empty to remember later
         ircApps             = [""] -- open on desktop 3
+        oneLineCLIApps      = ["timew", "task_add"]
+        middleFloatApps     = ["SpeedCrunch", "task_done"]
 
 myLayout = avoidStruts ( master ||| Mirror master ||| threeCol ||| Grid ||| Full )
     where
