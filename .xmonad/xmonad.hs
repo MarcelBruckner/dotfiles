@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Config.Kde
 import XMonad.Util.SpawnOnce
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 
 import XMonad.Layout.Spacing
 import XMonad.Layout.Spiral
@@ -19,11 +20,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- close focused window
       ((modm .|. shiftMask      , xK_q      ), kill)
     , ((modm                    , xK_w      ), kill)
+    , ((modm .|. controlMask    , xK_s      ), spawn "systemsettings" )
+
+    , ((modm .|. shiftMask      , xK_k      ), spawn "chromium https://calendar.google.com/calendar/u/0/r")
+    --, ((modm                    , xK_t      ), spawn "chromium https://cqse.atlassian.net/jira/software/projects/BRUCKNER/boards/128")
+    , ((modm                    , xK_t      ), spawn "alacritty -t timew -e timew_startup")
+    , ((modm .|. shiftMask      , xK_t      ), spawn "timew stop")
 
     , ((modm .|. controlMask    , xK_Return ), spawn "chromium" )
     , ((modm                    , xK_s      ), spawn "slack")
     , ((modm                    , xK_p      ), spawn "krunner")
-    , ((modm .|. shiftMask      , xK_k      ), spawn "chromium https://calendar.google.com/calendar/u/0/r")
     , ((modm                    , xK_i      ), spawn "intellij-idea")
     , ((modm                    , xK_d      ), spawn "dmenu_run")
     , ((modm                    , xK_r      ), spawn "alacritty -e ranger")
@@ -31,15 +37,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ]
 
 myManageHook = composeAll . concat $
-    [ [ className   =? c --> doFloat           | c <- floatsByClassName]
-    , [ title       =? t --> doFloat           | t <- floatsByTitle]
-    , [ className   =? c --> doF (W.shift "2") | c <- webApps]
-    , [ className   =? c --> doF (W.shift "3") | c <- ircApps]
+    [
+      [ title       =? "timew"          --> doRectFloat (W.RationalRect 0.4 0.4 0.2 0.02) ]
+    , [ title       =? "SpeedCrunch"    --> doRectFloat (W.RationalRect 0.4 0.4 0.2 0.2) ]
+
+    , [ className   =? c --> doFloat            | c <- floatsByClassName]
+    , [ title       =? t --> doFloat            | t <- floatsByTitle]
+    , [ className   =? c --> doF (W.shift "2")  | c <- webApps]
+    , [ className   =? c --> doF (W.shift "3")  | c <- ircApps]
     ]
-  where floatsByClassName      = ["MPlayer", "Gimp", "Nvidia-settings", "plasmashell", "ksmserver-logout-greeter", "Google-chrome", "SpeedCrunch", "kcalc"]
-        floatsByTitle = ["alsamixer"]
-        webApps       = [""] -- open on desktop 2 <-- Empty to remember later
-        ircApps       = [""] -- open on desktop 3
+  where floatsByClassName   = ["MPlayer", "Gimp", "Nvidia-settings", "plasmashell", "ksmserver-logout-greeter", "Google-chrome", "SpeedCrunch", "kcalc", "systemsettings"]
+        floatsByTitle       = ["alsamixer", "timew"]
+        webApps             = [""] -- open on desktop 2 <-- Empty to remember later
+        ircApps             = [""] -- open on desktop 3
 
 myLayout = avoidStruts ( master ||| Mirror master ||| threeCol ||| Grid ||| Full )
     where

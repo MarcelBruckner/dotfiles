@@ -14,6 +14,7 @@ plugins=(
   zsh-syntax-highlighting
   colored-man-pages
   virtualenv
+  taskwarrior
 )
 
 source $ZSH/oh-my-zsh.sh
