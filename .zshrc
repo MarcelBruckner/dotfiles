@@ -3,7 +3,8 @@
 #################
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 HYPHEN_INSENSITIVE="true"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -43,4 +44,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
+
+eval "$(starship init zsh)"
 

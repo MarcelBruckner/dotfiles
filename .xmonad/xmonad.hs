@@ -52,7 +52,7 @@ myManageHook = composeAll . concat $
         floatsByTitle       = ["alsamixer", "timew"]
         webApps             = [""] -- open on desktop 2 <-- Empty to remember later
         ircApps             = [""] -- open on desktop 3
-        oneLineCLIApps      = ["timew", "task_add"]
+        oneLineApps         = ["timew", "task_add"]
         middleFloatApps     = ["SpeedCrunch", "task_done"]
 
 myLayout = avoidStruts ( master ||| Mirror master ||| threeCol ||| Grid ||| Full )
