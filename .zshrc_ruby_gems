@@ -1,0 +1,5 @@
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+export RUBY_VERSION="ruby-2.7.6"
+source $HOME/.rvm/scripts/rvm

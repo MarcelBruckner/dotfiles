@@ -24,7 +24,7 @@ source $ZSH/oh-my-zsh.sh
 ### Personal ###
 ################
 source $HOME/.zsh_aliases
-# source $HOME/.config/zsh/.zshrc_ruby_gems 
+[[ -f $HOME/.zshrc_ruby_gems ]] && source $HOME/.zshrc_ruby_gems 
 [[ ! -f $HOME/.cqse_aliases ]] || source $HOME/.cqse_aliases
 [[ ! -f /usr/share/nvm/init-nvm.sh ]] || source /usr/share/nvm/init-nvm.sh
 [[ ! -f $HOME/.cargo/bin/rustc ]] || export PATH="$PATH:$HOME/.cargo/bin"
@@ -47,3 +47,6 @@ export PATH="$HOME/gems/bin:$PATH"
 
 eval "$(starship init zsh)"
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

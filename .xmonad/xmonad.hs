@@ -22,15 +22,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm                    , xK_w      ), kill)
     , ((modm .|. controlMask    , xK_s      ), spawn "systemsettings" )
 
-    , ((modm .|. shiftMask      , xK_k      ), spawn "chromium https://calendar.google.com/calendar/u/0/r")
-    --, ((modm                    , xK_t      ), spawn "chromium https://cqse.atlassian.net/jira/software/projects/BRUCKNER/boards/128")
     , ((modm                    , xK_z      ), spawn "alacritty -t timew -e timew_startup")
     , ((modm .|. shiftMask      , xK_z      ), spawn "timew stop")
-    , ((modm                    , xK_t      ), spawn "alacritty -t task_add -e task_add")
-    , ((modm .|. shiftMask      , xK_t      ), spawn "alacritty -t task_done -e task_done")
+    , ((modm .|. shiftMask      , xK_t      ), spawn "alacritty -t task_add -e task_add")
+    , ((modm .|. controlMask    , xK_t      ), spawn "alacritty -t task_done -e task_done")
 
     , ((modm .|. controlMask    , xK_Return ), spawn "chromium" )
-    , ((modm                    , xK_s      ), spawn "slack")
+    , ((modm                    , xK_s      ), spawn "ferdium")
     , ((modm                    , xK_p      ), spawn "krunner")
     , ((modm                    , xK_i      ), spawn "intellij-idea")
     , ((modm                    , xK_d      ), spawn "dmenu_run")
@@ -45,12 +43,12 @@ myManageHook = composeAll . concat $
 
     , [ className   =? c --> doFloat            | c <- floatsByClassName]
     , [ title       =? t --> doFloat            | t <- floatsByTitle]
-    , [ className   =? c --> doF (W.shift "2")  | c <- webApps]
+    , [ className   =? c --> doF (W.shift "9")  | c <- messengingApps]
     , [ className   =? c --> doF (W.shift "3")  | c <- ircApps]
     ]
   where floatsByClassName   = ["MPlayer", "Gimp", "Nvidia-settings", "plasmashell", "ksmserver-logout-greeter", "Google-chrome", "SpeedCrunch", "kcalc", "systemsettings"]
         floatsByTitle       = ["alsamixer", "timew"]
-        webApps             = [""] -- open on desktop 2 <-- Empty to remember later
+        messengingApps      = ["Ferdium"] -- open on desktop 2 <-- Empty to remember later
         ircApps             = [""] -- open on desktop 3
         oneLineApps         = ["timew", "task_add"]
         middleFloatApps     = ["SpeedCrunch", "task_done"]
