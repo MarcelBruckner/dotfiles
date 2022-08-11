@@ -21,6 +21,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
       ((modm .|. shiftMask      , xK_q      ), kill)
     , ((modm                    , xK_w      ), kill)
     , ((modm .|. controlMask    , xK_s      ), spawn "systemsettings" )
+    , ((modm .|. shiftMask      , xK_s      ), spawn "screenshot-to-clipboard.sh")
 
     , ((modm                    , xK_z      ), spawn "alacritty -t timew -e timew_startup")
     , ((modm .|. shiftMask      , xK_z      ), spawn "timew stop")
@@ -28,7 +29,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask    , xK_t      ), spawn "alacritty -t task_done -e task_done")
 
     , ((modm .|. controlMask    , xK_Return ), spawn "chromium" )
-    , ((modm                    , xK_s      ), spawn "ferdium")
+    , ((modm                    , xK_f      ), spawn "ferdium")
     , ((modm                    , xK_p      ), spawn "krunner")
     , ((modm                    , xK_i      ), spawn "intellij-idea")
     , ((modm                    , xK_d      ), spawn "dmenu_run")
