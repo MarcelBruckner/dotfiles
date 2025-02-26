@@ -104,7 +104,37 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias update="brew update && brew upgrade ; brew upgrade --cask --greedy ; brew cleanup"
+alias ls="eza --icons=always"
 alias ll='ls -la'
 alias gs='git status'
 alias gp='git pull'
+alias bat='bat --color=always'
+alias vimsearch='vim $(fzf --preview="bat --color=always {}")'
+
+# Setup the ruby env selector
 eval "$(rbenv init - zsh)"
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+# Initialize zoxide
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+# Init Starship
+eval "$(starship init zsh)"
+
+# history setup
+HISTFILE=$HOME/.zhistory
+SAVEHIST=1000
+HISTSIZE=999
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
+
+# completion using arrow keys (based on history)
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
