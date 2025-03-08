@@ -106,6 +106,7 @@ source $ZSH/oh-my-zsh.sh
 alias update="brew update && brew upgrade ; brew upgrade --cask --greedy ; brew cleanup"
 alias ls="eza --icons=always"
 alias ll='ls -la'
+alias tree='ll --tree'
 alias gs='git status'
 alias gp='git pull'
 alias bat='bat --color=always'
@@ -118,8 +119,7 @@ eval "$(rbenv init - zsh)"
 source <(fzf --zsh)
 
 # Initialize zoxide
-eval "$(zoxide init zsh)"
-alias cd="z"
+eval "$(zoxide init --cmd cd zsh)"
 
 # Init Starship
 eval "$(starship init zsh)"
