@@ -111,6 +111,7 @@ alias gs='git status'
 alias gp='git pull'
 alias bat='bat --color=always'
 alias vimsearch='vim $(fzf --preview="bat --color=always {}")'
+alias gcp='git add . && git commit -v && git push && git status'
 
 # Setup the ruby env selector
 eval "$(rbenv init - zsh)"
@@ -138,3 +139,14 @@ bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+. "$HOME/.local/bin/env"
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.4.1
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/marcelbruckner/Applications/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/marcelbruckner/Applications/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/marcelbruckner/Applications/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/marcelbruckner/Applications/google-cloud-sdk/completion.zsh.inc'; fi
