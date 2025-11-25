@@ -1,0 +1,7 @@
+installs:
+  cmd: brew install vim
+  depends:
+    - brew
+
+links:
+  vimrc: ~/.vimrc
