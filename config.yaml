@@ -16,8 +16,7 @@ installs:
 
 depends:
   # Repositories zuerst tappen
-  tap:
-      - homebrew/cask-fonts
+  # tap:
 
   # CLI Tools
   brew:
