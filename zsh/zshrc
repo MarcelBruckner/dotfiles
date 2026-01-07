@@ -114,7 +114,7 @@ alias vimsearch='vim $(fzf --preview="bat --color=always {}")'
 alias gcp='git add . && git commit -v && git push && git status'
 
 # Setup the ruby env selector
-eval "$(rbenv init - zsh)"
+# eval "$(rbenv init - zsh)"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
@@ -140,7 +140,7 @@ bindkey '^[[B' history-search-forward
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-. "$HOME/.local/bin/env"
+# . "$HOME/.local/bin/env"
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 chruby ruby-3.4.1
