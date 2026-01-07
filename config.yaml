@@ -1,2 +1,30 @@
 global: 
   link_type: 'Symbolic'
+
+meta:
+  name: "Mein Dotfile Repo"
+
+installs:
+  # Standard Formular
+  brew: "brew install"
+  
+  # Für GUI Apps (Casks)
+  cask: "brew install --cask"
+  
+  # Für Taps (Repositories)
+  tap: "brew tap"
+
+depends:
+  # Repositories zuerst tappen
+  tap:
+      - homebrew/cask-fonts
+
+  # CLI Tools
+  brew:
+      - git
+      - vim
+
+  # GUI Apps
+  cask:
+      - visual-studio-code
+      - nikitabobko/tap/aerospace

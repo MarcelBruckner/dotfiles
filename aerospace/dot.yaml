@@ -1,7 +1,2 @@
-installs:
-  cmd: brew install --cask nikitabobko/tap/aerospace
-  depends:
-    - brew
-
 links:
   aerospace.toml: ~/.aerospace.toml
